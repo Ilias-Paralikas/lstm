@@ -27,7 +27,7 @@ NUM_LAYERS= hyperparameters['NUM_LAYERS']
 TRAIN_TEST_SPLOT=   hyperparameters['TRAIN_TEST_SPLOT']
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-log_folder='lstm/logs'
+log_folder='logs'
 
 
 def train_test_split(df,split=TRAIN_TEST_SPLOT):
