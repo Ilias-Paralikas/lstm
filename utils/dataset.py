@@ -8,10 +8,8 @@ def preprocess(df,FILL_NAN):
     df_bfill = df.bfill(limit=FILL_NAN)
     df = (df_ffill + df_bfill) / 2
 
-    # Initialize a new StandardScaler instance
     scaler = StandardScaler()
 
-# Fit and transform the DataFrame
     df  = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
     return df
 
