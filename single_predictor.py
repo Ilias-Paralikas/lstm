@@ -12,7 +12,7 @@ def read_json_file(file_path):
     with open(file_path, 'r') as f:
         hyperparameters = json.load(f)
     return hyperparameters
-hyperparameters = read_json_file('lstm/hyperparameters.json')
+hyperparameters = read_json_file('hyperparameters.json')
 
 
 
