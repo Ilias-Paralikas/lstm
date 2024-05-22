@@ -4,12 +4,11 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 def preprocess(df,FILL_NAN):
+    # fill nan values
     df_ffill = df.ffill(limit=FILL_NAN)
     df_bfill = df.bfill(limit=FILL_NAN)
     df = (df_ffill + df_bfill) / 2
-
     scaler = StandardScaler()
-
     df  = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
     return df
 
