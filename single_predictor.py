@@ -13,6 +13,7 @@ def read_json_file(file_path):
         hyperparameters = json.load(f)
     return hyperparameters
 hyperparameters = read_json_file('hyperparameters.json')
+print(hyperparameters)
 
 
 
