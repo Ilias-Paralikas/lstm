@@ -14,7 +14,7 @@ def read_json_file(file_path):
     return hyperparameters
 hyperparameters = read_json_file('hyperparameters.json')
 
-
+print(hyperparameters)
 
 BATCH_SIZE = hyperparameters['BATCH_SIZE']
 FILL_NAN= hyperparameters['FILL_NAN']
