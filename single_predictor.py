@@ -12,8 +12,7 @@ def read_json_file(file_path):
     with open(file_path, 'r') as f:
         hyperparameters = json.load(f)
     return hyperparameters
-hyperparameters = read_json_file('hyperparameters.json')
-print(hyperparameters)
+hyperparameters = read_json_file('lstm/hyperparameters.json')
 
 
 
@@ -28,7 +27,7 @@ NUM_LAYERS= hyperparameters['NUM_LAYERS']
 TRAIN_TEST_SPLOT=   hyperparameters['TRAIN_TEST_SPLOT']
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-log_folder='logs'
+log_folder='lstm/logs'
 
 
 def train_test_split(df,split=TRAIN_TEST_SPLOT):
@@ -156,7 +155,7 @@ run_folder = log_folder + '/run_' + str(run_index)
 os.makedirs(run_folder)
 
 
-csv_file=  'results_cpu_memory_eco-efficiency.csv'
+csv_file=  'lstm/results_cpu_memory_eco-efficiency.csv'
 df = pd.read_csv(csv_file)
 df_ffill = df.ffill(limit=FILL_NAN)
 df_bfill = df.bfill(limit=FILL_NAN)
