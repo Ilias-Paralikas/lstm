@@ -24,11 +24,12 @@ lr  = hyperparameters['lr']
 HIDDEN_LAYER_SIZE =     hyperparameters['HIDDEN_LAYER_SIZE']
 NUM_LAYERS= hyperparameters['NUM_LAYERS']
 TRAIN_TEST_SPLOT=   hyperparameters['TRAIN_TEST_SPLOT']
+ROOT_FOLDER =hyperparameters['ROOT_FOLDER']
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-csv_file=  'results_cpu_memory_eco-efficiency.csv'
+csv_file=  os.path.join(ROOT_FOLDER,'results_cpu_memory_eco-efficiency.csv')
 df = pd.read_csv(csv_file)
 df = preprocess(df,FILL_NAN)
 

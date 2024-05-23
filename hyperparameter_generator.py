@@ -14,6 +14,7 @@ parser.add_argument('--lr', type=float,default=0.001)
 parser.add_argument('--HIDDEN_LAYER_SIZE', type=int, default=10)
 parser.add_argument('--NUM_LAYERS', type=int,default=3)
 parser.add_argument('--TRAIN_TEST_SPLOT', type=float,default=0.9)
+parser.add_argument('--ROOT_FOLDER', type=str,default='.')
 
 # Parse the arguments
 hyperparameters = parser.parse_args()
