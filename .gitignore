@@ -1,3 +1,4 @@
 logs/
 multi_predictor
 single_predictor
+hyperparameters.json
