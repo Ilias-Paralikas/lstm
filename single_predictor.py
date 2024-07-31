@@ -7,7 +7,7 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 import json
-from utils.model import LSTMModel
+from utils.model import LSTMModel, train_lstm
 from utils.dataset import LoadPredictionDataset,train_test_split, preprocess
 from utils.bookkeeper import Bookkeeper
 
@@ -40,6 +40,24 @@ train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True
 test_dataloader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
 model = LSTMModel(input_size=TIME_STEP,hidden_layer_size=HIDDEN_LAYER_SIZE,num_layers=NUM_LAYERS,output_size=1).to(device)
-model.train(epochs=EPOCHS,train_dataloader=train_dataloader,lr=lr,save_folder=run_folder)
+train_lstm(model,epochs=EPOCHS,train_dataloader=train_dataloader,lr=lr,save_folder=run_folder)
 model.plot_results(test_dataset,test_dataloader,time_step=TIME_STEP,device=device,save_folder=run_folder)
 
+
+
+def test(model, dataloader, device):
+    model.eval()  # Set the model to evaluation mode
+    mse_loss = nn.MSELoss()
+    total_loss = 0.0
+    with torch.no_grad():  # Disable gradient calculation
+        for data, targets in dataloader:
+            data, targets = data.to(device), targets.to(device)
+            outputs = model(data)
+            loss = mse_loss(outputs, targets)
+            total_loss += loss.item()
+    average_loss = total_loss / len(dataloader)
+    return average_loss
+
+# Example usage
+mse = test(model, test_dataloader, device)
+print(f'Mean Squared Error: {mse}')
